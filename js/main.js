@@ -121,3 +121,34 @@
 
 
 //7
+const account = {
+    balance: 0,
+    transactions: [],
+    getBalance() {
+        return this.balance;
+    },
+    deposit(amount) {
+        if (amount > 0) {
+            this.balance += amount;
+            this.transactions.push({ type: 'deposit', amount, });
+            return `Депотизовано $${amount}. Ноий баланс $${this.balance}`;
+        }
+        return 'Invalid deposit amount';
+    },
+    withdraw(amount) {
+        if (amount > 0 && amount <= this.balance) {
+            this.balance -= amount;
+            this.transactions.push({ type: 'withdraw', amount, });
+            return `Відклали $${amount}. Новий баланс $${this.balance}`;
+        }
+        return 'Помилка';
+    },
+    getTransactionHistory() {
+        return this.transactions;
+    }
+};
+
+console.log(account.getBalance()); 
+console.log(account.deposit(100)); 
+console.log(account.withdraw(50)); 
+console.log(account.getTransactionHistory()); 
